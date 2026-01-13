@@ -54,7 +54,6 @@ $app->addErrorMiddleware(true, true, true, $container->get(LoggerInterface::clas
 // 4. Use the Logger in a Route
 
 // 2. Register Routes
-//$routes = require __DIR__ . '/routes/route.php';
 $routes = require __DIR__ . '/../src/routes/route.php';
 $routes($app);
 
