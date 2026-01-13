@@ -1,6 +1,6 @@
 <?php
 // src/Utils/ValidationUtility.php
-namespace App\Utils;
+namespace SlimBase\Utils;
 
 final class ValidationUtility
 {

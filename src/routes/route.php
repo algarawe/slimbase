@@ -9,11 +9,18 @@ return function ($app) {
 	// Add routes
 	$app->get('/', function (Request $request, Response $response) {
 
-		$logger = $this->get(LoggerInterface::class);
-        $logger->info("/ Home route accessed");
+			$id = 1;
+			$dateUtc = new \DateTime('now', new \DateTimeZone('UTC'));
+			$utcFormatted = $dateUtc->format(\DateTime::ATOM);
+			
+			$data = [
+				"version" => "v1",
+				"id" => $id,
+				"time" => $utcFormatted
+			];
 
-		$response->getBody()->write('<a href="/hello/world">Try /hello/world</a>');
-		return $response;
+			$response->getBody()->write(json_encode($data));
+			return $response->withHeader('Content-Type', 'application/json');
 	});
 
 	$app->get('/hello/{name}', function (Request $request, Response $response, $args) {
@@ -31,7 +38,7 @@ return function ($app) {
 			$groupV1->get('/tt/{id}', function (Request $request, Response $response, array $args) {
 				//var_dump($_SERVER['REQUEST_URI']);
 				
-			   $id = $args['id'];
+			    $id = $args['id'];
 				
 				$dateUtc = new \DateTime('now', new \DateTimeZone('UTC'));
 				$utcFormatted = $dateUtc->format(\DateTime::ATOM);
